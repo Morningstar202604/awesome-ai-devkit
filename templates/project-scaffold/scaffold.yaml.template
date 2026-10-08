@@ -1,0 +1,65 @@
+# ──────────────────────────────────────────────────────────────────
+# Awesome AI DevKit — Scaffold 模板 v2.0
+#
+# 使用:
+#   1. cp templates/project-scaffold/scaffold.yaml.template ./scaffold.yaml
+#   2. 修改所有 <占位符>
+#   3. 开工 — Agent 自动读取并按步骤执行
+# ──────────────────────────────────────────────────────────────────
+
+version: "2.0"
+
+task:
+  name: "<task-name-kebab-case>"
+  description: "<一句话任务描述>"
+  type: feature  # feature | bugfix | refactor | deploy | incident
+
+# ── 开工前读取的上下文 ──────────────────────────────────────
+memory:
+  - context/project.yaml
+  - context/architecture.md
+  - git log --oneline -20
+
+# ── 步骤列表 (扁平结构，parallel: true 表示可并行) ────────
+steps:
+
+  # ── 串行步骤 (按顺序执行) ────────────────────────────────
+  - goal: "<步骤目标（一句话）>"
+    description: "<agent 需要用一句话知道干什么>"
+    skills:
+      - <skill-id-1>
+      - <skill-id-2>
+    outputs:
+      - path/to/output/file.ext:
+          contains: [关键字1, 关键字2]
+    quality_gate: "<质量标准描述（agent 自行决定如何验证）>"
+
+  # ── 并行步骤 (互不依赖，同时执行) ──────────────────────
+  - goal: "<独立子任务 A>"
+    parallel: true
+    skills:
+      - <skill-id>
+    outputs:
+      - path/to/output-a.ext
+
+  - goal: "<独立子任务 B>"
+    parallel: true
+    skills:
+      - <skill-id>
+    outputs:
+      - path/to/output-b.ext
+
+  # ── 后续串行步骤 (依赖并行步骤完成) ──────────────────────
+  - goal: "<依赖前两步的任务>"
+    needs: [<并行步骤 A>, <并行步骤 B>]
+    skills:
+      - <skill-id>
+
+# ── 完工后全量验收 ─────────────────────────────────────────
+post_task:
+  quality_gates:
+    - "<质量 gate 描述 1>"
+    - "<质量 gate 描述 2>"
+
+# ── 失败处理 ──────────────────────────────────────────────
+# 不需要预设。Agent 自行决定：重试 → 换策略 → 回退 → 求助。

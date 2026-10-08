@@ -1,0 +1,33 @@
+# ── Dependencies ──────────────────────────────────────
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.local
+
+# ── Runtime / Temporary ───────────────────────────────
+.hook_cache/
+.catpaw_cache/
+logs/sessions/*.jsonl
+logs/sessions/*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# ── Validation & Tooling artifact ─────────────────────
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# ── IDE ───────────────────────────────────────────────
+*.cursor/rules-local/
+.idea/
+.vscode/settings.json
+
+# ── Generated output ──────────────────────────────────
+docs/_build/
+dist/
+build/

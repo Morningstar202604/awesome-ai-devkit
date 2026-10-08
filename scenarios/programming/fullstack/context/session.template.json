@@ -1,0 +1,21 @@
+{
+  "_comment": "Awesome AI DevKit — Session state template. Copy to logs/sessions/<session_id>.jsonl to resume.",
+  "__meta__": true,
+  "session_id": "<generated-at-runtime>",
+  "created_at": "<ISO-8601>",
+  "agent_ids": [],
+  "current_workflow": null,
+  "current_stage": null,
+  "variables": {
+    "feature_name": null,
+    "branch_name": null,
+    "pr_url": null
+  },
+  "resume_from": null,
+  "context_files_loaded": [
+    "context/project.yaml",
+    "context/architecture.md"
+  ],
+  "tool_calls": [],
+  "summary": null
+}

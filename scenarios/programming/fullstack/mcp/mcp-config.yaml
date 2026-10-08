@@ -1,0 +1,293 @@
+# ============================================================
+# Fullstack 项目 — MCP Server 配置
+# ============================================================
+# 启用项目中需要的 MCP 服务。将本文件置于项目根目录或
+# ~/.config/awesome-devkit/mcp-config.yaml
+#
+# 使用方式：
+#   1. CLI 加载: awesome-devkit mcp load --config mcp-config.yaml
+#   2. 手动加载: cat mcp-config.yaml | awesome-devkit mcp sync
+#
+# 每个 server 定义：
+#   enabled:       是否启用
+#   command:       启动命令
+#   args:          命令参数
+#   env:           环境变量
+#   description:   用途描述
+# ============================================================
+
+version: "1.0"
+project_type: fullstack
+project_root: "."
+
+servers:
+  # ----------------------------------------------------------
+  #  文件系统与代码
+  # ----------------------------------------------------------
+  filesystem:
+    enabled: true
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-filesystem"
+      - "${PROJECT_ROOT:-.}"
+    description: "本地文件系统读写（代码、配置、文档）"
+
+  # ----------------------------------------------------------
+  #  版本控制
+  # ----------------------------------------------------------
+  git:
+    enabled: true
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-git"
+      - "--repo"
+      - "${PROJECT_ROOT:-.}"
+    description: "Git 操作（diff、log、blame、分支管理）"
+
+  github:
+    enabled: true
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-github"
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+    description: "GitHub Issues、PR、CI 状态查询"
+
+  # ----------------------------------------------------------
+  #  数据库
+  # ----------------------------------------------------------
+  postgres:
+    enabled: true
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-postgres"
+      - "${DATABASE_URL}"
+    description: "PostgreSQL 数据库查询与 Schema 浏览"
+
+  redis:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-redis"
+      - "${REDIS_URL:-redis://localhost:6379}"
+    description: "Redis 缓存操作（KV、队列、Pub/Sub）"
+
+  # ----------------------------------------------------------
+  #  基础设施
+  # ----------------------------------------------------------
+  docker:
+    enabled: true
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-docker"
+    description: "Docker 容器和镜像管理"
+
+  # ----------------------------------------------------------
+  #  业务服务
+  # ----------------------------------------------------------
+  stripe:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-stripe"
+    env:
+      STRIPE_SECRET_KEY: "${STRIPE_SECRET_KEY}"
+      STRIPE_WEBHOOK_SECRET: "${STRIPE_WEBHOOK_SECRET}"
+    description: "Stripe 支付（客户、订阅、发票）"
+
+  resend:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-resend"
+    env:
+      RESEND_API_KEY: "${RESEND_API_KEY}"
+    description: "Resend 邮件发送服务"
+
+  # ----------------------------------------------------------
+  #  可观测性
+  # ----------------------------------------------------------
+  sentry:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-sentry"
+    env:
+      SENTRY_AUTH_TOKEN: "${SENTRY_AUTH_TOKEN}"
+      SENTRY_ORG: "${SENTRY_ORG_SLUG}"
+    description: "Sentry 错误追踪与性能监控"
+
+  # ----------------------------------------------------------
+  #  浏览器自动化
+  # ----------------------------------------------------------
+  playwright:
+    enabled: true
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-playwright"
+      - "--headless"
+    description: "无头浏览器自动化（E2E 测试、截图、爬取）"
+
+  # ----------------------------------------------------------
+  #  设计
+  # ----------------------------------------------------------
+  figma:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-figma"
+    env:
+      FIGMA_ACCESS_TOKEN: "${FIGMA_ACCESS_TOKEN}"
+    description: "Figma 设计稿读取与标注导出"
+
+  # ----------------------------------------------------------
+  #  向量搜索
+  # ----------------------------------------------------------
+  qdrant:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-qdrant"
+      - "--url"
+      - "${QDRANT_URL:-http://localhost:6333}"
+    env:
+      QDRANT_API_KEY: "${QDRANT_API_KEY}"
+    description: "Qdrant 向量数据库操作（搜索、过滤）"
+
+  # ----------------------------------------------------------
+  #  文档与知识
+  # ----------------------------------------------------------
+  notion:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-notion"
+    env:
+      NOTION_API_KEY: "${NOTION_API_KEY}"
+    description: "Notion 知识库读写"
+
+  # ----------------------------------------------------------
+  #  第三方 API
+  # ----------------------------------------------------------
+  slack:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-slack"
+    env:
+      SLACK_BOT_TOKEN: "${SLACK_BOT_TOKEN}"
+    description: "Slack 消息与频道操作"
+
+  # ----------------------------------------------------------
+  #  项目管理 (2026 主流)
+  # ----------------------------------------------------------
+  linear:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-linear"
+    env:
+      LINEAR_API_KEY: "${LINEAR_API_KEY}"
+    description: "Linear 项目管理（Issue、Sprint、Roadmap）"
+
+  # ----------------------------------------------------------
+  #  部署 (2026 主流)
+  # ----------------------------------------------------------
+  vercel:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-vercel"
+    env:
+      VERCEL_TOKEN: "${VERCEL_TOKEN}"
+    description: "Vercel 部署与环境变量管理"
+
+  # ----------------------------------------------------------
+  #  Web 搜索 (增强)
+  # ----------------------------------------------------------
+  exa:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-exa"
+    env:
+      EXA_API_KEY: "${EXA_API_KEY}"
+    description: "Exa neural search（代码文档、技术文章搜索）"
+
+  # ----------------------------------------------------------
+  #  基础设施可观测
+  # ----------------------------------------------------------
+  helicone:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-helicone"
+    env:
+      HELICONE_API_KEY: "${HELICONE_API_KEY}"
+    description: "LLM 调用监控与成本追踪"
+
+  # ----------------------------------------------------------
+  #  BaaS
+  # ----------------------------------------------------------
+  supabase:
+    enabled: false
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-supabase"
+      - "${SUPABASE_PROJECT_URL}"
+    env:
+      SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"
+    description: "Supabase 数据库、Auth、Storage"
+
+# ============================================================
+#  全局设置
+# ============================================================
+settings:
+  # 自动重启崩溃的 MCP server
+  auto_restart: true
+  restart_max_attempts: 3
+  restart_delay_ms: 1000
+
+  # 日志级别
+  log_level: info
+
+  # 安全：限制文件系统 server 的访问路径
+  filesystem_allow:
+    - "./src"
+    - "./apps"
+    - "./packages"
+    - "./docs"
+    - "./scripts"
+    - "README.md"
+    - "package.json"
+    - "tsconfig.json"
+    - "docker-compose.yml"
+
+  # 安全：禁止访问的路径
+  filesystem_block:
+    - ".env"
+    - ".env.production"
+    - "secrets/"
+    - "*.key"
+    - "*.pem"
+    - "node_modules/"
+    - ".git/"

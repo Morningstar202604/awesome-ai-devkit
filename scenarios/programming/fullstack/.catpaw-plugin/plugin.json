@@ -1,0 +1,79 @@
+{
+  "name": "fullstack-dev-team",
+  "version": "1.4.4",
+  "description": "全栈开发团队专家 — 11 个专业角色覆盖产品→设计→实现→测试→审查→部署→运维全链路，支持变异测试/混沌工程/Prompt注入防护/SBOM。遵循 Scaffold Protocol v2.1，对标 OpenCode/Codex/Claude Code 2026.10 行业基准。",
+  "author": {
+    "name": "badhope"
+  },
+  "interface": {
+    "displayName": {
+      "zh-CN": "全栈开发团队",
+      "en": "Fullstack Dev Team"
+    },
+    "shortDescription": {
+      "zh-CN": "11 个专业角色 · AI 安全方案师 · 变异测试 · 混沌工程 · SBOM · 指令润色 · 对标 2026.10 行业基准",
+      "en": "11 professional roles · AI Security · Mutation Testing · Chaos Engineering · SBOM · Instruction Grooming · 2026.10 benchmark-aligned"
+    },
+    "longDescription": {
+      "zh-CN": "全栈开发团队专家包含 11 个专职角色：产品经理（需求/ICE 优先级/验收标准）、架构师（技术方案/ADR）、数据库工程师（Schema/迁移/安全规则）、后端开发者（API/业务逻辑）、前端开发者（UI/类型安全）、设计系统建筑师（Token/组件/无障碍）、测试工程师（变异测试/覆盖分析）、代码审查员（独立审查/跨文件影响）、安全审查员（OWASP/AI Prompt注入防护）、DevOps（CI/CD/SBOM/金丝雀部署）、SRE（SLO/RED-USE/混沌工程/事故复盘）。包含 19 个工具 Skill，覆盖 instruction-grooming 指令润色、scaffold-workflow 编排、memory-management 记忆、security-governance 安全、model-routing 模型路由、context-compression 压缩、project-health 健康检查、code-duplication 重复检测、git-workflow 工作流、semantic-release 发布、linter-formatter 格式化、sub-agent-guard 守护、web-browser-vision 浏览器视觉、integration-patterns 集成模式、devkit-infra 基础设施、devkit-utilities 工具集、calculator-math 精确计算、task-tracker 任务追踪、memory-persistent 持久记忆等。",
+      "en": "11-role expert team: PM, Architect, DBA, Backend, Frontend, Design System, QA (mutation testing), Code Reviewer, Security (OWASP + AI prompt injection), DevOps (CI/CD + SBOM + canary), SRE (SLO + RED-USE + chaos engineering). 19 utility Skills including instruction-grooming, scaffold-workflow, memory-management, security-governance, model-routing, context-compression, project-health, code-duplication, git-workflow, semantic-release, linter-formatter, sub-agent-guard, web-browser-vision, integration-patterns, devkit-infra, devkit-utilities, calculator-math, task-tracker, memory-persistent."
+    },
+    "defaultPrompt": {
+      "zh-CN": "启动全栈开发团队，为我的项目做全面技术评审",
+      "en": "Launch the fullstack team for a comprehensive technical review"
+    },
+    "quickPrompts": [
+      {
+        "zh-CN": "新功能从需求到部署走完整团队流程",
+        "en": "Full team pipeline: requirements → deploy"
+      },
+      {
+        "zh-CN": "并行开发后端 API 和前端，自动代码审查 + 变异测试",
+        "en": "Parallel dev + auto review + mutation testing"
+      },
+      {
+        "zh-CN": "安全深度审查（含 AI Prompt 注入防护）+ SBOM",
+        "en": "Deep security review (incl. AI prompt injection) + SBOM"
+      },
+      {
+        "zh-CN": "CI/CD + SLO + 混沌工程 + 监控",
+        "en": "CI/CD + SLO + chaos engineering + monitoring"
+      },
+      {
+        "zh-CN": "数据库优化 + 索引策略 + 容量规划",
+        "en": "Database optimization + indexing + capacity planning"
+      },
+      {
+        "zh-CN": "设计系统 Token + 组件规范 + 视觉回归基线",
+        "en": "Design tokens + component spec + visual regression baseline"
+      }
+    ],
+    "tags": [
+      {
+        "zh-CN": "全栈开发",
+        "en": "Fullstack Development"
+      },
+      {
+        "zh-CN": "团队协作",
+        "en": "Team Collaboration"
+      },
+      {
+        "zh-CN": "2026 行业基准",
+        "en": "2026 Benchmark-Aligned"
+      },
+      {
+        "zh-CN": "AI 安全",
+        "en": "AI Security"
+      },
+      {
+        "zh-CN": "变异测试",
+        "en": "Mutation Testing"
+      },
+      {
+        "zh-CN": "混沌工程",
+        "en": "Chaos Engineering"
+      }
+    ]
+  },
+  "skills": ["./skills/"]
+}

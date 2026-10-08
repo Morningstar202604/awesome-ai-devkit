@@ -1,0 +1,69 @@
+# ──────────────────────────────────────────────────────────────────
+# 全栈开发 — 故障响应 Scaffold v2.0
+#
+# 使用:
+#   cp scenarios/programming/fullstack/scaffolds/incident-response.yaml ./scaffold.yaml
+# ──────────────────────────────────────────────────────────────────
+
+version: "2.0"
+
+task:
+  name: "incident-response"
+  description: "故障响应：检测 → 止损 → 修复 → 验证 → 复盘"
+  type: incident
+
+memory:
+  - context/project.yaml
+  - context/architecture.md
+
+steps:
+  # 故障处理必须严格串行，不能并行
+  - goal: "检测与分级"
+    description: "确认故障现象、影响范围、严重等级，指定 IC"
+    skills: [web-browser-vision, project-health]
+    outputs:
+      - docs/incidents/<id>-triage.md:
+          contains: [严重等级, 影响范围, IC]
+
+  - goal: "止损 / 降级"
+    description: "执行回滚、降级或限流，先恢复服务再查根因"
+    skills: [devkit-infra, git-workflow]
+    outputs:
+      - docs/incidents/<id>-mitigation.md:
+          contains: [回滚, 降级]
+
+  - goal: "定位与修复"
+    description: "读日志、diff 最近提交、分析根因，写 regression 测试 + 修复"
+    skills: [devkit-utilities, code-duplication]
+    outputs:
+      - src/<module>/<fix>.py
+      - tests/regression/test_<issue>.py:
+          contains: [test_]
+    quality_gate: "regression 测试覆盖修复场景，测试通过"
+
+  - goal: "验证恢复"
+    description: "确认服务恢复，监控指标回归正常"
+    skills: [context-compression, project-health]
+    outputs:
+      - docs/incidents/<id>-verified.md:
+          contains: [服务恢复]
+    quality_gate: "相关测试通过，监控指标正常"
+
+  - goal: "复盘报告"
+    description: "记录时间线、根因、改进项"
+    skills: [memory-persistent, task-tracker]
+    outputs:
+      - docs/incidents/<id>-postmortem.md:
+          contains: [时间线, 根因, 改进项]
+
+post_task:
+  quality_gates:
+    - "回归测试全部通过"
+    - "监控仪表盘无异常告警"
+    - "复盘报告有时间线和改进项"
+    - "如有架构决策变更，ADR 已更新"
+    - "loop-verification: 自动循环验证所有质量门禁，最多 2 轮"
+  loop_config:
+    max_loops: 2
+    fail_threshold: 0
+    auto_fix: true

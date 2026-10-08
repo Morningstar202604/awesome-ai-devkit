@@ -1,0 +1,30 @@
+# 全栈开发场景 Hooks 配置
+# 仅列出实际可用的钩子
+
+hooks:
+  agent_lifecycle:
+    on_agent_start:
+      - script: "hooks/scripts/load-project-context.sh"
+        timeout: 5
+        description: "加载项目上下文 (context/project.yaml + ADR)"
+    on_agent_end:
+      - script: "hooks/scripts/save-session-log.sh"
+        timeout: 10
+        description: "持久化会话日志"
+    on_agent_error:
+      - script: "hooks/scripts/error-alert.sh"
+        timeout: 15
+        description: "错误日志记录"
+
+  before_action:
+    middlewares:
+      - name: "auth-check"
+        path: "hooks/middleware/auth_check.py"
+        priority: 10
+        description: "工具调用权限检查 (read/write/admin)"
+
+# 全局配置
+version: "1.0"
+rate_limiter:
+  requests_per_minute: 30
+  burst_limit: 10

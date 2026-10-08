@@ -1,0 +1,136 @@
+# =============================================================================
+# Universal Agent Team - Cursor Rules
+# =============================================================================
+# Copy this file to any project root as `.cursorrules` to apply these rules
+# Cursor will read it automatically and apply the rules to all AI interactions
+# =============================================================================
+
+## Project Overview
+# This is a multi-agent software development setup. All AI assistants should
+# follow these guidelines when helping with this codebase.
+
+## Language & Framework Defaults
+- For JavaScript/TypeScript projects, prefer TypeScript
+- For Python projects, use type hints everywhere
+- For APIs, prefer REST with OpenAPI documentation
+- Use modern ES modules (import/export) over CommonJS (require)
+
+## Code Quality Standards
+- **DRY**: Don't repeat yourself - extract reusable functions
+- **SOLID**: Follow SOLID principles, especially Single Responsibility
+- **KISS**: Keep it simple - prefer straightforward solutions over clever ones
+- **YAGNI**: You ain't gonna need it - don't add features until necessary
+
+## Naming Conventions
+- **Variables/functions**: camelCase (`getUserData`, `isActive`)
+- **Classes/types**: PascalCase (`UserRepository`, `AuthConfig`)
+- **Constants**: UPPER_SNAKE_CASE (`MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT`)
+- **Files**: kebab-case for utilities, PascalCase for components (`date-utils.ts`, `Button.tsx`)
+
+## Function Design
+- Maximum 50 lines per function (excluding comments/docstrings)
+- Maximum 3 parameters (use options object for more)
+- Single responsibility - one function does one thing well
+- Pure functions preferred (no side effects when possible)
+
+## Error Handling
+- Never swallow errors silently
+- Always include error context for debugging
+- Use custom error classes for domain-specific errors
+- Validate inputs at the boundary (API routes, CLI args)
+
+```typescript
+// Good
+async function fetchUser(id: string): Promise<User> {
+    if (!id) throw new ArgumentError('User ID is required');
+    try {
+        return await userRepository.findById(id);
+    } catch (error) {
+        throw new DatabaseError(`Failed to fetch user ${id}`, error);
+    }
+}
+```
+
+## Testing
+- Write tests for all business logic
+- Follow AAA pattern: Arrange, Act, Assert
+- Test edge cases (empty inputs, null/undefined, boundary values)
+- Mock external dependencies (APIs, databases)
+- Minimum 80% code coverage
+
+```python
+# Good
+class TestCreateUser:
+    def test_should_create_user_with_valid_data(self):
+        # Arrange
+        user_data = {"username": "john_doe", "email": "john@example.com"}
+        
+        # Act
+        user = create_user(user_data)
+        
+        # Assert
+        assert user.username == "john_doe"
+        assert user.email == "john@example.com"
+    
+    def test_should_raise_error_for_duplicate_username(self):
+        # Arrange
+        create_user({"username": "john_doe", "email": "john@example.com"})
+        
+        # Act & Assert
+        with pytest.raises(ValueError, match="Username already exists"):
+            create_user({"username": "john_doe", "email": "other@example.com"})
+```
+
+## API Design
+- Use RESTful conventions
+- Resource names in plural nouns
+- Proper HTTP status codes (200, 201, 400, 404, 500)
+- Request/response in JSON
+- Include API documentation (OpenAPI)
+
+```
+GET    /api/v1/users       # List users (paginated)
+GET    /api/v1/users/:id   # Get single user
+POST   /api/v1/users       # Create user
+PUT    /api/v1/users/:id   # Update user
+DELETE /api/v1/users/:id   # Delete user
+```
+
+## Database
+- Use parameterized queries (never string concatenation)
+- Add indexes for frequently queried fields
+- Include created_at and updated_at on all tables
+- Use migrations for schema changes
+- Soft deletes (deleted_at) instead of hard deletes
+
+## Security
+- Never hardcode secrets or API keys
+- Validate and sanitize all user inputs
+- Use environment variables for configuration
+- Hash passwords (bcrypt, Argon2)
+- Implement rate limiting on public endpoints
+- Use HTTPS in production
+
+## Git Practices
+- Follow conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`
+- Write descriptive commit messages
+- Create focused, single-purpose commits
+- Never commit .env files or secrets
+
+## Documentation
+- Update README when adding new features
+- Document complex business logic with comments
+- Include setup instructions for new dependencies
+- Add JSDoc/docstrings to public APIs
+
+## Review Checklist
+Before merging any change, verify:
+- [ ] Code compiles/runs without errors and warnings
+- [ ] Tests pass locally
+- [ ] No linting errors
+- [ ] No console.log/print statements in production code
+- [ ] Error handling is in place
+- [ ] Input validation is present
+- [ ] No hardcoded secrets
+- [ ] Documentation updated
+- [ ] No unnecessary files committed

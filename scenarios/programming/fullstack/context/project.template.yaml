@@ -1,0 +1,96 @@
+# ──────────────────────────────────────────────────────────────────────
+# Awesome AI DevKit — Fullstack Project Context (Template)
+#
+# 1. Copy this file:  cp context/project.template.yaml context/project.yaml
+# 2. Fill in marked fields.
+# 3. hooks/scripts/load-project-context.sh reads this at agent start.
+# ──────────────────────────────────────────────────────────────────────
+
+# ── Identity ──────────────────────────────────────────────────────
+name: ""                          # REQUIRED: 项目名，如 "my-saas-app"
+description: ""                  # REQUIRED: 一句话描述
+repository: ""                   # Git URL，用于 hooks 读取分支/提交
+owner: ""                        # 团队 / org
+license: "MIT"                   # 默认 MIT
+
+framework_version: "2.0"         # Awesome DevKit framework version
+
+# ── Stack ─────────────────────────────────────────────────────────
+stack:
+  frontend: "(not set)"          # React | Next.js | Vue | Svelte
+  backend:  "(not set)"          # Node | Python | Go | Rust
+  database: "(not set)"          # PostgreSQL | MySQL | MongoDB
+  cache:    "(not set)"          # Redis | Memcached | (none)
+  queue:    "(not set)"          # RabbitMQ | SQS | (none)
+  search:   "(not set)"          # Elasticsearch | Meilisearch | (none)
+
+# ── Infrastructure ─────────────────────────────────────────────────
+infrastructure:
+  hosting: "(not set)"           # Vercel | AWS | Railway | K8s
+  ci_cd:   "(not set)"           # GitHub Actions | GitLab CI | CircleCI
+  package_manager: "(not set)"   # npm | pnpm | yarn | bun
+  monorepo: false                # true → 本模板 tools 跨多包共享
+
+# ── Agents authorized for this project ─────────────────────────────
+# These scopes are read by hooks/middleware/auth_check.py
+agents:
+  - id: "tech-lead"
+    name: "技术负责人"
+    allowed_scopes: ["read", "write", "admin"]
+  - id: "frontend-developer"
+    name: "前端开发"
+    allowed_scopes: ["read", "write"]
+  - id: "backend-developer"
+    name: "后端开发"
+    allowed_scopes: ["read", "write"]
+  - id: "devops-engineer"
+    name: "DevOps"
+    allowed_scopes: ["read", "write", "admin"]
+  - id: "qa-engineer"
+    name: "QA"
+    allowed_scopes: ["read", "write"]
+
+# ── Paths the Agent may touch ──────────────────────────────────────
+# Used by auth_check.py and log-writer middleware
+allowed_paths:
+  - "src/**"
+  - "packages/**"
+  - "tests/**"
+  - "scripts/**"
+  - "*.config.*"
+
+denied_paths:
+  - "secrets/**"
+  - ".env*"
+  - "node_modules/**"
+  - "__pycache__/**"
+
+# ── Feature flags the agent can consult ─────────────────────────────
+features:
+  use_openapi: true
+  use_graphql: false
+  use_websockets: false
+  use_ssr: true
+  use_i18n: true
+
+# ── Scaffold 协议配置 ────────────────────────────────────────
+# Agent 按 scaffold.yaml 执行任务时参考此配置
+scaffold:
+  protocol_version: "2.0"
+  skills_base: "scenarios/programming/fullstack/skills"
+  roles_base: "scenarios/programming/fullstack/roles"
+  default_scaffolds:
+    feature: "scenarios/programming/fullstack/scaffolds/feature-development.yaml"
+    incident: "scenarios/programming/fullstack/scaffolds/incident-response.yaml"
+    refactoring: "scenarios/programming/fullstack/scaffolds/refactoring.yaml"
+  session_dir: "logs/sessions"
+  validation:
+    pre_task: true
+    post_task: true
+    fail_on_missing_skill: true
+hooks_overrides:
+  rate_limiter:
+    requests_per_minute: 30
+    burst_limit: 10
+  cache:
+    ttl_seconds: 3600

@@ -1,0 +1,304 @@
+{
+  "$schema": "https://awesome-devkit.ai/schemas/mcp-import-v1.json",
+  "version": "1.0",
+  "description": "全栈项目常用 MCP Server 导入定义 — 覆盖文件、代码、数据库、部署、可观测",
+  "imports": [
+    "filesystem_mcp.json",
+    "git_mcp.json",
+    "github_mcp.json",
+    "postgres_mcp.json",
+    "redis_mcp.json",
+    "docker_mcp.json",
+    "stripe_mcp.json",
+    "resend_mcp.json",
+    "sentry_mcp.json",
+    "playwright_mcp.json",
+    "figma_mcp.json"
+  ],
+  "servers": {
+    "filesystem": {
+      "imported_from": "filesystem_mcp.json",
+      "name": "filesystem",
+      "display_name": "文件系统",
+      "category": "core",
+      "description": "读写项目文件、目录浏览、搜索",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-fileservice", "."]
+      },
+      "tools_provided": [
+        "read_file",
+        "write_file",
+        "list_directory",
+        "search_files",
+        "get_file_info"
+      ],
+      "enabled_by_default": true
+    },
+    "git": {
+      "imported_from": "git_mcp.json",
+      "name": "git",
+      "display_name": "Git 版本控制",
+      "category": "core",
+      "description": "Git diff、log、blame、分支操作",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-git"]
+      },
+      "tools_provided": [
+        "git_status",
+        "git_diff",
+        "git_log",
+        "git_commit",
+        "git_branch",
+        "git_show"
+      ],
+      "enabled_by_default": true
+    },
+    "github": {
+      "imported_from": "github_mcp.json",
+      "name": "github",
+      "display_name": "GitHub 集成",
+      "category": "devops",
+      "description": "Issues、Pull Requests、CI 状态、代码审查",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"]
+      },
+      "env_required": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "GitHub Personal Access Token（repo 权限）"
+      },
+      "tools_provided": [
+        "create_issue",
+        "list_issues",
+        "create_pull_request",
+        "list_pull_requests",
+        "get_ci_status",
+        "add_comment",
+        "merge_pull_request"
+      ],
+      "enabled_by_default": true
+    },
+    "postgres": {
+      "imported_from": "postgres_mcp.json",
+      "name": "postgres",
+      "display_name": "PostgreSQL 数据库",
+      "category": "database",
+      "description": "SQL 查询、Schema 浏览、表结构检查",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-postgres"]
+      },
+      "env_required": {
+        "DATABASE_URL": "PostgreSQL 连接串，如 postgresql://user:pass@host:5432/db"
+      },
+      "tools_provided": [
+        "query",
+        "list_tables",
+        "describe_table",
+        "list_schemas",
+        "explain_query"
+      ],
+      "enabled_by_default": true,
+      "config": {
+        "readonly": true,
+        "max_rows": 1000
+      }
+    },
+    "redis": {
+      "imported_from": "redis_mcp.json",
+      "name": "redis",
+      "display_name": "Redis 缓存",
+      "category": "database",
+      "description": "Key-Value 操作、队列管理、Pub/Sub",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-redis"]
+      },
+      "env_required": {
+        "REDIS_URL": "Redis 连接串，如 redis://localhost:6379"
+      },
+      "tools_provided": [
+        "get",
+        "set",
+        "delete",
+        "hget",
+        "hset",
+        "lpush",
+        "rpush",
+        "subscribe",
+        "publish",
+        "scan"
+      ],
+      "enabled_by_default": false
+    },
+    "docker": {
+      "imported_from": "docker_mcp.json",
+      "name": "docker",
+      "display_name": "Docker 容器",
+      "category": "devops",
+      "description": "容器生命周期、镜像管理、日志查看",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-docker"]
+      },
+      "tools_provided": [
+        "list_containers",
+        "start_container",
+        "stop_container",
+        "get_logs",
+        "list_images",
+        "pull_image",
+        "exec_command"
+      ],
+      "enabled_by_default": true,
+      "config": {
+        "allow_root": false
+      }
+    },
+    "stripe": {
+      "imported_from": "stripe_mcp.json",
+      "name": "stripe",
+      "display_name": "Stripe 支付",
+      "category": "business",
+      "description": "客户管理、订阅、发票、Webhook",
+      "homepage": "https://github.com/modelcontextprotocol/servers",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-stripe"]
+      },
+      "env_required": {
+        "STRIPE_SECRET_KEY": "sk_test_... 或 sk_live_...",
+        "STRIPE_WEBHOOK_SECRET": "whsec_...（可选，用于 webhook 验证）"
+      },
+      "tools_provided": [
+        "create_customer",
+        "list_customers",
+        "create_subscription",
+        "cancel_subscription",
+        "create_invoice",
+        "list_invoices",
+        "create_checkout_session"
+      ],
+      "enabled_by_default": false
+    },
+    "resend": {
+      "imported_from": "resend_mcp.json",
+      "name": "resend",
+      "display_name": "Resend 邮件",
+      "category": "business",
+      "description": "邮件发送与域名管理",
+      "homepage": "https://resend.com",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-resend"]
+      },
+      "env_required": {
+        "RESEND_API_KEY": "re_... API Key"
+      },
+      "tools_provided": [
+        "send_email",
+        "send_batch_emails",
+        "list_domains",
+        "verify_domain",
+        "get_email"
+      ],
+      "enabled_by_default": false
+    },
+    "sentry": {
+      "imported_from": "sentry_mcp.json",
+      "name": "sentry",
+      "display_name": "Sentry 错误追踪",
+      "category": "observability",
+      "description": "错误查询、Issue 管理、性能监控",
+      "homepage": "https://sentry.io",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-sentry"]
+      },
+      "env_required": {
+        "SENTRY_AUTH_TOKEN": "Sentry Auth Token（project:read, event:read 权限）",
+        "SENTRY_ORG": "组织 slug"
+      },
+      "tools_provided": [
+        "list_issues",
+        "get_issue",
+        "list_events",
+        "get_event",
+        "list_projects",
+        "get_stats"
+      ],
+      "enabled_by_default": false
+    },
+    "playwright": {
+      "imported_from": "playwright_mcp.json",
+      "name": "playwright",
+      "display_name": "Playwright 浏览器自动化",
+      "category": "testing",
+      "description": "无头浏览器：E2E 测试、截图、表单填写",
+      "homepage": "https://playwright.dev",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-playwright", "--headless"]
+      },
+      "tools_provided": [
+        "navigate",
+        "click",
+        "type",
+        "screenshot",
+        "evaluate",
+        "wait_for_selector",
+        "get_text",
+        "fill_form"
+      ],
+      "enabled_by_default": true
+    },
+    "figma": {
+      "imported_from": "figma_mcp.json",
+      "name": "figma",
+      "display_name": "Figma 设计",
+      "category": "design",
+      "description": "设计稿读取、标注导出、组件查询",
+      "homepage": "https://figma.com",
+      "install": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-figma"]
+      },
+      "env_required": {
+        "FIGMA_ACCESS_TOKEN": "Figma Personal Access Token"
+      },
+      "tools_provided": [
+        "get_file",
+        "get_components",
+        "get_styles",
+        "get_annotations",
+        "export_image",
+        "list_projects"
+      ],
+      "enabled_by_default": false
+    }
+  },
+  "presets": {
+    "minimal": {
+      "description": "最小配置 — 仅文件 + Git",
+      "servers": ["filesystem", "git"]
+    },
+    "standard": {
+      "description": "标准配置 — 文件 + Git + GitHub + DB + Docker",
+      "servers": ["filesystem", "git", "github", "postgres", "docker", "playwright"]
+    },
+    "full": {
+      "description": "完整配置 — 全部服务",
+      "servers": [
+        "filesystem", "git", "github", "postgres", "redis",
+        "docker", "stripe", "resend", "sentry", "playwright", "figma"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Awesome AI DevKit — 跨平台 AI 编程配置生态。场景化、模块化，内置全栈开发团队场景（11 个角色 + 21 个技能）。可按需添加更多领域的场景。">
+<meta name="keywords" content="ai-agent,fullstack,dev-team,ai-security,mutation-testing,chaos-engineering,sbom,prompt-engineering,agent-orchestration,scenario,cross-platform">
+<meta name="author" content="Awesome AI DevKit Team">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Awesome AI DevKit — AI Coding Configuration Ecosystem">
+<meta property="og:description" content="Scenario-based AI coding configuration. Includes Fullstack Dev Team with 11 roles and 21 skills. Platform-agnostic.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://x33834.github.io/awesome-ai-devkit/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Awesome AI DevKit — AI Coding Configuration Ecosystem">
+<meta name="twitter:description" content="Scenario-based AI coding configuration. Includes Fullstack Dev Team with 11 roles and 21 skills. Platform-agnostic.">
+<meta name="theme-color" content="#0a0e1a">
+<link rel="canonical" href="https://x33834.github.io/awesome-ai-devkit/">
+<title>Awesome AI DevKit — AI Coding Configuration Ecosystem</title>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --bg-elevated: #0f1629;
+  --card: #111d35;
+  --card-hover: #162442;
+  --border: #1e2d4a;
+  --border-light: #2a3f65;
+  --text: #e2e8f0;
+  --text-muted: #8899b4;
+  --text-dim: #5a6a85;
+  --accent-1: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-3: #06b6d4;
+  --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+  --gradient-text: linear-gradient(135deg, #818cf8 0%, #a78bfa 40%, #22d3ee 100%);
+  --green: #10b981;
+  --green-bg: rgba(16,185,129,.1);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,.3);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,.4);
+  --transition: .2s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a { color: var(--accent-3); text-decoration: none; transition: color var(--transition); }
+a:hover { color: #22d3ee; }
+
+/* ─── Navigation ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,14,26,.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 60px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: 1.05rem; color: #fff; letter-spacing: -.02em;
+}
+.nav-logo .logo-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; font-weight: 900;
+}
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  color: var(--text-muted); font-size: .88rem; font-weight: 500;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  background: var(--gradient) !important;
+  color: #fff !important;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: .85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: .01em;
+}
+.nav-cta:hover { opacity: .9; color: #fff !important; }
+.mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; padding: 4px 8px; }
+
+/* ─── Container ─── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── Hero ─── */
+.hero {
+  position: relative;
+  padding: 140px 0 100px;
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse at center, rgba(99,102,241,.15) 0%, rgba(139,92,246,.08) 40%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-size: .82rem; color: var(--text-muted);
+  margin-bottom: 32px;
+}
+.hero-badge .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 8px rgba(16,185,129,.6);
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800; letter-spacing: -.03em; line-height: 1.15;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.hero h1 .gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+.hero-actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gradient);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 1rem; font-weight: 600;
+  letter-spacing: .01em;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 20px rgba(99,102,241,.3);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(99,102,241,.4);
+  color: #fff;
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-size: .95rem; font-weight: 500;
+  transition: border-color var(--transition), background var(--transition);
+}
+.btn-secondary:hover {
+  border-color: var(--border-light);
+  background: var(--card-hover);
+  color: #fff;
+}
+
+/* ─── Install Block ─── */
+.install-block {
+  max-width: 560px;
+  margin: 0 auto 48px;
+  position: relative;
+}
+.install-block .terminal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.install-block .terminal-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(99,102,241,.05);
+}
+.install-block .terminal-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+}
+.install-block .terminal-dot.red { background: #ff5f57; }
+.install-block .terminal-dot.yellow { background: #febc2e; }
+.install-block .terminal-dot.green { background: #28c840; }
+.install-block .terminal-title {
+  margin-left: 8px; font-size: .8rem; color: var(--text-dim);
+}
+.install-block .terminal-body {
+  padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.install-block code {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+  font-size: .88rem;
+  color: #e2e8f0;
+  word-break: break-all;
+}
+.copy-btn {
+  flex-shrink: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: .78rem; font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex; align-items: center; gap: 6px;
+}
+.copy-btn:hover { border-color: var(--accent-2); color: #fff; }
+.copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+/* ─── GitHub Stars Badge ─── */
+.hero-badges {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; flex-wrap: wrap;
+}
+.hero-badges img {
+  height: 24px; border-radius: 4px;
+}
+.hero-badges .badge-custom {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: .78rem; color: var(--text-muted);
+  font-weight: 500;
+}
+.hero-badges .badge-custom strong { color: #fff; }
+
+/* ─── Section ─── */
+.section { padding: 100px 0; }
+.section-sm { padding: 80px 0; }
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-tag {
+  display: inline-block;
+  font-size: .78rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700; letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 560px; margin: 0 auto;
+}
+
+/* ─── Features Grid ─── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+}
+.feature-card:hover::before { opacity: 1; }
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+.feature-icon svg { width: 24px; height: 24px; }
+.feature-card:nth-child(1) .feature-icon { background: linear-gradient(135deg, rgba(99,102,241,.2), rgba(139,92,246,.1)); }
+.feature-card:nth-child(2) .feature-icon { background: linear-gradient(135deg, rgba(139,92,246,.2), rgba(236,72,153,.1)); }
+.feature-card:nth-child(3) .feature-icon { background: linear-gradient(135deg, rgba(6,182,212,.2), rgba(16,185,129,.1)); }
+.feature-card:nth-child(4) .feature-icon { background: linear-gradient(135deg, rgba(16,185,129,.2), rgba(245,158,11,.1)); }
+.feature-card:nth-child(5) .feature-icon { background: linear-gradient(135deg, rgba(245,158,11,.2), rgba(239,68,68,.1)); }
+.feature-card:nth-child(6) .feature-icon { background: linear-gradient(135deg, rgba(236,72,153,.2), rgba(99,102,241,.1)); }
+.feature-card h3 {
+  font-size: 1.05rem; font-weight: 600;
+  color: #fff; margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: .92rem; color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ─── Scenarios ─── */
+.scenarios-section {
+  position: relative;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 50%, var(--bg) 100%);
+}
+.scenarios-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+.scenario-highlight {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  position: relative;
+}
+.scenario-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.scenario-label {
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent-3);
+  margin-bottom: 8px;
+}
+.scenario-highlight h3 {
+  font-size: 1.4rem; font-weight: 700;
+  color: #fff; margin-bottom: 12px;
+}
+.scenario-highlight p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.65;
+}
+.scenario-link {
+  display: inline-block;
+  font-size: .88rem; font-weight: 600;
+  color: var(--accent-3);
+  transition: color var(--transition);
+}
+.scenario-link:hover { color: #22d3ee; }
+
+/* ─── Scenarios coming soon ─── */
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  max-width: 800px;
+  margin: 24px auto 0;
+}
+.coming-tag {
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  text-align: center;
+  font-size: .82rem; color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* ─── Architecture Visualization ─── */
+.arch-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+.arch-section {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 50%, var(--bg) 100%);
+}
+.arch-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.arch-layer {
+  display: flex; align-items: center;
+  position: relative;
+  margin-bottom: 4px;
+}
+.arch-layer-bar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 14px;
+  transition: all var(--transition);
+  cursor: default;
+  width: 100%;
+}
+.arch-layer-bar:hover {
+  border-color: var(--border-light);
+  background: var(--card-hover);
+}
+.arch-num {
+  font-size: .75rem; font-weight: 700;
+  color: var(--accent-1);
+  min-width: 24px;
+  font-family: 'SF Mono', 'Cascadia Code', monospace;
+}
+.arch-name {
+  font-size: .92rem; font-weight: 600; color: #fff;
+  flex: 1;
+}
+.arch-desc {
+  font-size: .8rem; color: var(--text-dim);
+}
+/* Alternate widths for visual depth */
+.arch-layer:nth-child(1) .arch-layer-bar,
+.arch-layer:nth-child(11) .arch-layer-bar { margin-left: 0; margin-right: 0; }
+.arch-layer:nth-child(2) .arch-layer-bar,
+.arch-layer:nth-child(10) .arch-layer-bar { margin-left: 8px; margin-right: 8px; }
+.arch-layer:nth-child(3) .arch-layer-bar,
+.arch-layer:nth-child(9) .arch-layer-bar { margin-left: 16px; margin-right: 16px; }
+.arch-layer:nth-child(4) .arch-layer-bar,
+.arch-layer:nth-child(8) .arch-layer-bar { margin-left: 24px; margin-right: 24px; }
+.arch-layer:nth-child(5) .arch-layer-bar,
+.arch-layer:nth-child(7) .arch-layer-bar { margin-left: 32px; margin-right: 32px; }
+.arch-layer:nth-child(6) .arch-layer-bar { margin-left: 40px; margin-right: 40px; }
+
+/* ─── Code Examples ─── */
+.code-section {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.code-tabs {
+  display: flex; gap: 0;
+  margin-bottom: 0;
+}
+.code-tab {
+  padding: 12px 24px;
+  font-size: .85rem; font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--card);
+  transition: all var(--transition);
+  margin-right: 4px;
+}
+.code-tab.active {
+  background: var(--bg);
+  color: #fff;
+  border-color: var(--border-light);
+}
+.code-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  overflow: hidden;
+}
+.code-panel .terminal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(99,102,241,.04);
+}
+.code-panel .terminal-dots { display: flex; gap: 6px; }
+.code-panel .terminal-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.code-panel pre {
+  padding: 20px;
+  overflow-x: auto;
+  margin: 0;
+}
+.code-panel code {
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+  font-size: .85rem;
+  line-height: 1.75;
+  color: #c9d1d9;
+}
+/* Syntax highlighting */
+.kw { color: #ff7b72; }   /* keyword */
+.str { color: #a5d6ff; }   /* string */
+.fn { color: #d2a8ff; }    /* function */
+.cm { color: #8b949e; }    /* comment */
+.nb { color: #79c0ff; }    /* builtin */
+.var { color: #ffa657; }   /* variable */
+.op { color: #ff7b72; }    /* operator */
+
+/* ─── Stats ─── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 800px; margin: 0 auto;
+}
+.stat-card {
+  text-align: center;
+  padding: 36px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform var(--transition), border-color var(--transition);
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-light);
+}
+.stat-number {
+  font-size: 3rem; font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+.stat-label {
+  margin-top: 10px;
+  font-size: .92rem; color: var(--text-muted);
+  font-weight: 500;
+}
+.stat-sub {
+  margin-top: 4px;
+  font-size: .78rem; color: var(--text-dim);
+}
+
+/* ─── Platforms ─── */
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.platform-card {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 28px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  text-align: center;
+}
+.platform-card:hover {
+  border-color: var(--border-light);
+  transform: translateY(-2px);
+}
+.platform-card.active { border-color: var(--green); }
+.platform-card .plogo {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 900; color: #fff;
+  font-family: 'SF Mono', monospace;
+}
+.platform-card .plogo.gitcode { background: linear-gradient(135deg, #ff6b35, #f7c948); }
+.platform-card .plogo.gitee { background: linear-gradient(135deg, #c71d23, #e74c3c); }
+.platform-card .plogo.github { background: linear-gradient(135deg, #24292e, #4a5568); }
+.platform-card .plogo.github-mirror { background: linear-gradient(135deg, #333, #555); }
+.platform-name { font-size: .88rem; font-weight: 600; color: #fff; }
+.platform-repo { font-size: .78rem; color: var(--text-dim); }
+.platform-tag {
+  font-size: .68rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--green);
+  margin-top: -4px;
+}
+
+/* ─── Quick Start Steps ─── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  position: relative;
+}
+.step-card {
+  position: relative;
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform var(--transition), border-color var(--transition);
+}
+.step-card:hover { transform: translateY(-3px); border-color: var(--border-light); }
+.step-number {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 800; color: #fff;
+  margin: 0 auto 16px;
+}
+.step-title {
+  font-size: .95rem; font-weight: 600; color: #fff;
+  margin-bottom: 8px;
+}
+.step-desc {
+  font-size: .82rem; color: var(--text-muted);
+  line-height: 1.55;
+}
+.step-code {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'SF Mono', monospace;
+  font-size: .75rem;
+  color: var(--accent-3);
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.step-connector {
+  position: absolute;
+  top: 52px; right: -10px;
+  width: 20px; height: 2px;
+  background: linear-gradient(90deg, var(--border-light), transparent);
+  z-index: 1;
+}
+.step-card:last-child .step-connector { display: none; }
+
+/* ─── FAQ ─── */
+.faq-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.faq-item:hover { border-color: var(--border-light); }
+.faq-question {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px;
+  background: none; border: none;
+  cursor: pointer;
+  font-size: .95rem; font-weight: 600; color: #fff;
+  text-align: left;
+  transition: background var(--transition);
+}
+.faq-question:hover { background: rgba(99,102,241,.05); }
+.faq-arrow {
+  width: 20px; height: 20px;
+  transition: transform var(--transition);
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease, padding .3s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding: 0 20px 18px;
+}
+.faq-answer p {
+  font-size: .9rem; color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ─── Footer ─── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0 40px;
+  background: var(--bg-elevated);
+}
+.footer-inner {
+  display: flex;
+  align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 32px;
+}
+.footer-brand {
+  max-width: 300px;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 1rem; color: #fff; letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+.footer-logo .logo-icon {
+  width: 24px; height: 24px; border-radius: 6px;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #fff; font-weight: 900;
+}
+.footer-brand p {
+  font-size: .82rem; color: var(--text-dim);
+  line-height: 1.6;
+}
+.footer-links {
+  display: flex; gap: 48px;
+}
+.footer-col h4 {
+  font-size: .82rem; font-weight: 600;
+  color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: .85rem; color: var(--text-dim);
+  padding: 4px 0;
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p {
+  font-size: .78rem; color: var(--text-dim);
+}
+.footer-bottom-links {
+  display: flex; gap: 20px;
+}
+.footer-bottom-links a {
+  font-size: .78rem; color: var(--text-dim);
+  transition: color var(--transition);
+}
+.footer-bottom-links a:hover { color: #fff; }
+
+/* ─── Scroll Animations ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .platforms-grid { grid-template-columns: repeat(2, 1fr); }
+  .step-card .step-connector { display: none; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute; top: 60px; left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  .hero { padding: 120px 0 80px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .platforms-grid { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .footer-links { gap: 32px; }
+  .footer-inner { flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.9rem; }
+  .platforms-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
+
+/* ─── Utilities ─── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" role="navigation" aria-label="主导航">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="logo-icon">A</span>
+      Awesome AI DevKit
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#features">Features</a>
+      <a href="#scenarios">Scenarios</a>
+      <a href="#quickstart">Quick Start</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/x33834/awesome-ai-devkit" class="nav-cta" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <button class="mobile-toggle" aria-label="菜单" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      v1.4.4 · 2026.10 Released
+    </div>
+    <h1>
+      场景化 <span class="gradient">AI 编程配置</span><br>
+      任意平台可用
+    </h1>
+    <p class="hero-sub">
+      每个场景提供一套角色、技能、工作流。内置全栈开发团队场景。<br>
+      场景、角色、技能、工作流按需组合。
+    </p>
+    <div class="hero-actions">
+      <a href="#quickstart" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="currentColor"/></svg>
+        快速上手
+      </a>
+      <a href="https://github.com/x33834/awesome-ai-devkit" class="btn-secondary" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <!-- Install Command -->
+    <div class="install-block">
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dot red"></div>
+          <div class="terminal-dot yellow"></div>
+          <div class="terminal-dot green"></div>
+          <span class="terminal-title">Terminal</span>
+        </div>
+        <div class="terminal-body">
+          <code id="installCmd">git clone https://github.com/x33834/awesome-ai-devkit.git && cd awesome-ai-devkit</code>
+          <button class="copy-btn" onclick="copyInstall()" aria-label="复制">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            复制
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="hero-badges">
+      <span class="badge-custom" title="内置 1 个完整场景">
+        <span style="color:var(--accent-2)">&#9679;</span> <strong>1</strong> 场景已就绪
+      </span>
+      <span class="badge-custom" title="支持平台">
+        <span style="color:var(--green)">&#9679;</span> <strong>4</strong> 源码平台
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">核心能力</span>
+      <h2 class="section-title">每个场景，都是一支团队</h2>
+      <p class="section-desc">指令润色、安全防御、质量门禁、上下文优化 — 所有场景共享的通用能力。</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad1)" stroke-width="2"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#818cf8"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>指令润色</h3>
+        <p>自动将模糊的用户指令转化为结构化提示词，智能推断默认值、补全缺失信息，零配置全自动。</p>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad2)" stroke-width="2"><defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#a78bfa"/><stop offset="100%" style="stop-color:#ec4899"/></linearGradient></defs><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>AI 安全防御</h3>
+        <p>Prompt 注入检测、Agent 输出转义、Skill 完整性校验 (SHA-256)、速率限制。覆盖 OWASP Top 10 + AI 专项威胁。</p>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad3)" stroke-width="2"><defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#22d3ee"/><stop offset="100%" style="stop-color:#10b981"/></linearGradient></defs><path d="M21 12a9 9 0 11-6.219-8.56"/><path d="M21 3v6h-6"/></svg>
+        </div>
+        <h3>质量工作流</h3>
+        <p>标准化 scaffold 协议驱动多步骤开发，每个阶段有明确的质量门禁和验证机制。变异测试、代码审查、安全扫描内建。</p>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad4)" stroke-width="2"><defs><linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#10b981"/><stop offset="100%" style="stop-color:#f59e0b"/></linearGradient></defs><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>上下文管理</h3>
+        <p>智能上下文压缩、跨会话持久记忆、任务完成后的经验自动提取与复用。所有场景的通用短板。</p>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad5)" stroke-width="2"><defs><linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#ef4444"/></linearGradient></defs><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+        </div>
+        <h3>多模型路由</h3>
+        <p>按任务类型智能选择最优 LLM — 复杂推理用高能力模型、简单改动用低成本模型，自动 fallback。</p>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad6)" stroke-width="2"><defs><linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ec4899"/><stop offset="100%" style="stop-color:#818cf8"/></linearGradient></defs><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3>可组合模块</h3>
+        <p>角色、技能、工作流、钩子各自独立。按需取舍不同场景的模块，构建自己的工作流。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Scenarios Section -->
+<section class="section scenarios-section" id="scenarios">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">内置场景</span>
+      <h2 class="section-title">全栈开发团队</h2>
+      <p class="section-desc">从产品经理到 SRE，覆盖产品到运维全流程的内置示例场景。</p>
+    </div>
+
+    <div class="scenario-highlight fade-up">
+      <div class="scenario-label">内置示例 · Included Scenario</div>
+      <h3>全栈开发团队 (Fullstack Dev Team)</h3>
+      <p>包含 11 个专业角色（PM、架构师、后端、前端、设计系统、QA、代码审查、安全审查、DevOps、SRE、数据库工程师）和 21 个可复用技能。覆盖需求分析、技术设计、实现、质量审查、安全、部署、运维全流程。基于 Scaffold v2.1 协议进行多角色协作编排。</p>
+      <a href="scenarios/programming/fullstack/" class="scenario-link">浏览场景文件 →</a>
+    </div>
+
+    <div class="fade-up" style="margin-top: 40px;">
+      <div class="section-header" style="margin-bottom: 24px;">
+        <span class="section-tag">即将到来</span>
+        <h3 style="font-size: 1.2rem; color: var(--text-muted);">更多场景</h3>
+      </div>
+      <div class="coming-soon-grid">
+        <div class="coming-tag">业务运营</div>
+        <div class="coming-tag">创意内容</div>
+        <div class="coming-tag">数据工程</div>
+        <div class="coming-tag">DevOps</div>
+        <div class="coming-tag">CLI 工具</div>
+        <div class="coming-tag">基础库</div>
+        <div class="coming-tag">ML Native</div>
+        <div class="coming-tag">移动端</div>
+        <div class="coming-tag">研究分析</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="section arch-section" id="architecture">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">场景架构</span>
+      <h2 class="section-title">全栈角色，一套定义</h2>
+      <p class="section-desc">内置场景中 11 个角色的层级架构与上下游契约。</p>
+    </div>
+
+    <div class="arch-container">
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">01</span><span class="arch-name">Product Manager</span><span class="arch-desc">需求 · ICE 评分 · Gherkin 验收标准</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">02</span><span class="arch-name">Architect System Designer</span><span class="arch-desc">技术设计 · ADR · API 契约</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">03</span><span class="arch-name">Database Engineer</span><span class="arch-desc">Schema · 迁移 · 索引策略</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">04</span><span class="arch-name">Backend API Developer</span><span class="arch-desc">RESTful / GraphQL API · 业务逻辑</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">05</span><span class="arch-name">Frontend UI Developer</span><span class="arch-desc">UI 组件 · 类型安全 · 状态管理</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">06</span><span class="arch-name">Design System Architect</span><span class="arch-desc">Design Token · 组件 API · WCAG AA</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">07</span><span class="arch-name">Test QA Engineer</span><span class="arch-desc">单元/集成/E2E · 变异测试</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">08</span><span class="arch-name">Code Reviewer</span><span class="arch-desc">独立评审 · 跨文件影响分析</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">09</span><span class="arch-name">Security Review Engineer</span><span class="arch-desc">OWASP Top 10 · AI Prompt 注入防御</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">10</span><span class="arch-name">DevOps Deploy Engineer</span><span class="arch-desc">CI/CD · SBOM · 金丝雀发布</span></div></div>
+      <div class="arch-layer fade-up"><div class="arch-layer-bar"><span class="arch-num">11</span><span class="arch-name">Site Reliability Engineer</span><span class="arch-desc">SLO/SLI · RED-USE 监控 · 混沌工程</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Code Examples -->
+<section class="section code-section" id="code">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">代码示例</span>
+      <h2 class="section-title">开箱即用</h2>
+      <p class="section-desc">标准化 scaffold 与角色定义</p>
+    </div>
+
+    <div class="code-tabs fade-up" role="tablist">
+      <button class="code-tab active" role="tab" onclick="switchTab('scaffold')" id="tab-scaffold">使用示例</button>
+      <button class="code-tab" role="tab" onclick="switchTab('agent')" id="tab-agent">角色定义</button>
+    </div>
+
+    <!-- Scaffold Panel -->
+    <div class="code-panel fade-up" id="panel-scaffold" role="tabpanel">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <button class="copy-btn" onclick="copyCode('code1')" aria-label="复制">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          复制
+        </button>
+      </div>
+      <pre><code id="code1"><span class="cm"># 1. Clone and enter the project</span>
+<span class="kw">git</span> clone https://github.com/x33834/awesome-ai-devkit.git
+<span class="kw">cd</span> awesome-ai-devkit
+
+<span class="cm"># 2. Bootstrap the fullstack scenario</span>
+<span class="kw">bash</span> scenarios/programming/fullstack/bootstrap.sh
+
+<span class="cm"># 3. Verify installation</span>
+<span class="kw">python</span> devkit-doctor.py
+
+<span class="cm"># 4. Open in your AI coding tool, then load the scenario</span></code></pre>
+    </div>
+
+    <!-- Agent Definition Panel -->
+    <div class="code-panel fade-up" id="panel-agent" role="tabpanel" style="display:none">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <button class="copy-btn" onclick="copyCode('code2')" aria-label="复制">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          复制
+        </button>
+      </div>
+      <pre><code id="code2"><span class="cm"># agents/frontend-ui-developer.md</span>
+
+<span class="kw">name</span>: frontend-ui-developer
+<span class="kw">description</span>: <span class="str">"UI implementation — components, state, data fetching"</span>
+
+<span class="cm"># Upstream consumers (what I receive)</span>
+<span class="kw">consumes</span>:
+  - architect-system-designer:
+      deliverables: [<span class="str">"API contracts"</span>, <span class="str">"interface specs"</span>]
+  - design-system-architect:
+      deliverables: [<span class="str">"Design Tokens"</span>, <span class="str">"Component API Spec"</span>]
+
+<span class="cm"># Downstream consumers (what I produce)</span>
+<span class="kw">produces</span>:
+  - test-qa-engineer:
+      deliverables: [<span class="str">"Component test points"</span>]
+
+<span class="kw">tools</span>:
+  - read, write, edit, multi_edit
+  - grep, glob_file_search
+  - bash</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- Platforms -->
+<section class="section-sm" id="platforms">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">多平台源码</span>
+      <h2 class="section-title">4 大平台同步</h2>
+      <p class="section-desc">任一平台克隆即可使用，保持同步。</p>
+    </div>
+    <div class="platforms-grid fade-up">
+      <a href="https://gitcode.com/badhope/awesome-ai-devkit" class="platform-card active" target="_blank" rel="noopener">
+        <div class="plogo gitcode">GC</div>
+        <div class="platform-name">GitCode</div>
+        <div class="platform-repo">badhope/awesome-ai-devkit</div>
+        <div class="platform-tag">主仓库</div>
+      </a>
+      <a href="https://gitee.com/badhope/awesome-ai-devkit" class="platform-card" target="_blank" rel="noopener">
+        <div class="plogo gitee">G</div>
+        <div class="platform-name">Gitee</div>
+        <div class="platform-repo">badhope/awesome-ai-devkit</div>
+        <div class="platform-repo" style="color:var(--text-dim)">镜像同步</div>
+      </a>
+      <a href="https://github.com/x33834/awesome-ai-devkit" class="platform-card" target="_blank" rel="noopener">
+        <div class="plogo github">GH</div>
+        <div class="platform-name">GitHub</div>
+        <div class="platform-repo">x33834/awesome-ai-devkit</div>
+        <div class="platform-repo" style="color:var(--text-dim)">Release</div>
+      </a>
+      <a href="https://github.com/Morningstar202604/awesome-ai-devkit" class="platform-card" target="_blank" rel="noopener">
+        <div class="plogo github-mirror">GH</div>
+        <div class="platform-name">GitHub Mirror</div>
+        <div class="platform-repo">Morningstar202604/...</div>
+        <div class="platform-repo" style="color:var(--text-dim)">备份镜像</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Start Steps -->
+<section class="section" id="quickstart">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">快速上手</span>
+      <h2 class="section-title">3 步启用</h2>
+      <p class="section-desc">从 clone 到运行</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-number">1</div>
+        <div class="step-title">克隆</div>
+        <div class="step-desc">从任一平台克隆源码</div>
+        <div class="step-code">git clone ...</div>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-connector"></div>
+        <div class="step-number">2</div>
+        <div class="step-title">初始化场景</div>
+        <div class="step-desc">运行 bootstrap 检测环境</div>
+        <div class="step-code">bootstrap.sh</div>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-connector"></div>
+        <div class="step-number">3</div>
+        <div class="step-title">加载场景</div>
+        <div class="step-desc">在 AI 工具中加载并开始</div>
+        <div class="step-code">--</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">常见问题</span>
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-desc">快速找到你需要的答案</p>
+    </div>
+    <div class="faq-container">
+
+      <div class="faq-item fade-up">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Awesome AI DevKit 是什么？</span>
+          <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>这是一个跨平台的场景化 AI 编程配置仓库。内置全栈开发团队场景，包含 11 个角色、21 个技能和标准化工作流。可按需添加更多领域的场景。MIT 开源。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>全栈场景是唯一的吗？</span>
+          <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>不是。全栈是内置的第一个场景，作为示例提供。项目架构支持添加更多场景（业务运营、数据工程等），每个场景可以定义自己独立的角色、技能和工作流组合。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>支持哪些 AI 编码工具？</span>
+          <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>任何支持 Expert 插件标准的工具均可使用。查看所用工具的插件安装文档，获取具体的安装命令。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>AI 安全模块具体做什么？</span>
+          <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>AI Security 包含四层防御：(1) Prompt 注入检测；(2) Agent 输出转义；(3) Skill 签名校验 (SHA-256)；(4) 速率限制。同时覆盖 OWASP Top 10 传统安全。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>是开源的吗？</span>
+          <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>是的，MIT 许可证。你可以自由使用、修改、分发，包括商业项目。欢迎贡献 PR 和 Issue。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-icon">A</span>
+          Awesome AI DevKit
+        </div>
+        <p>AI 编程配置生态 · 场景化 · 模块化 · 跨平台</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>产品</h4>
+          <a href="#features">核心功能</a>
+          <a href="#scenarios">内置场景</a>
+          <a href="#quickstart">快速上手</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>平台</h4>
+          <a href="https://gitcode.com/badhope/awesome-ai-devkit" target="_blank" rel="noopener">GitCode</a>
+          <a href="https://gitee.com/badhope/awesome-ai-devkit" target="_blank" rel="noopener">Gitee</a>
+          <a href="https://github.com/x33834/awesome-ai-devkit" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/Morningstar202604/awesome-ai-devkit" target="_blank" rel="noopener">GitHub Mirror</a>
+        </div>
+        <div class="footer-col">
+          <h4>社区</h4>
+          <a href="https://github.com/x33834/awesome-ai-devkit/issues" target="_blank" rel="noopener">Issues</a>
+          <a href="https://github.com/x33834/awesome-ai-devkit/discussions" target="_blank" rel="noopener">Discussions</a>
+          <a href="https://github.com/x33834/awesome-ai-devkit/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Awesome AI DevKit. Released under MIT License.</p>
+      <div class="footer-bottom-links">
+        <a href="https://github.com/x33834/awesome-ai-devkit">GitHub</a>
+        <a href="https://gitee.com/badhope/awesome-ai-devkit">Gitee</a>
+        <a href="https://gitcode.com/badhope/awesome-ai-devkit">GitCode</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Minimal Vanilla JS -->
+<script>
+// Copy install command
+function copyInstall() {
+  const cmd = document.getElementById('installCmd').textContent.trim();
+  navigator.clipboard.writeText(cmd).then(() => {
+    const btn = document.querySelector('.install-block .copy-btn');
+    btn.classList.add('copied');
+    btn.innerHTML = '✓ 已复制';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '复制'; }, 2000);
+  });
+}
+
+// Copy code block
+function copyCode(elementId) {
+  const code = document.getElementById(elementId).textContent.trim();
+  navigator.clipboard.writeText(code).then(() => {
+    const panel = document.getElementById(elementId).closest('.code-panel');
+    const btn = panel.querySelector('.copy-btn');
+    btn.classList.add('copied');
+    btn.innerHTML = '✓ 已复制';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '复制'; }, 2000);
+  });
+}
+
+// Tab switching
+function switchTab(name) {
+  document.querySelectorAll('.code-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).style.display = '';
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// Scroll fade-up animation
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  });
+})();
+
+// GitHub API: Fetch live repo data
+(function() {
+  const REPO_OWNER = 'x33834';
+  const REPO_NAME = 'awesome-ai-devkit';
+  const API_BASE = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME;
+  const FETCH_TIMEOUT_MS = 3000;
+  const CACHE_TTL_MS = 5 * 60 * 1000;
+  const CACHE_KEY = 'gh_repo_data_' + REPO_OWNER + '_' + REPO_NAME;
+
+  function getCached() {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (Date.now() - parsed._ts > CACHE_TTL_MS) return null;
+      return parsed;
+    } catch (_) { return null; }
+  }
+
+  function setCached(data) {
+    try { data._ts = Date.now(); localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch (_) {}
+  }
+
+  function formatNumber(n) {
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return String(n);
+  }
+
+  function formatDate(isoString) {
+    if (!isoString) return '';
+    const d = new Date(isoString);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function updateDOM(data) {
+    const starEl = document.getElementById('gh-stars');
+    const forkEl = document.getElementById('gh-forks');
+    if (starEl && data.stars != null) starEl.textContent = formatNumber(data.stars);
+    if (forkEl && data.forks != null) forkEl.textContent = formatNumber(data.forks);
+  }
+
+  function fetchFreshData() {
+    if (typeof fetch !== 'function') return;
+    const controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    const timerId = controller ? setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS) : null;
+    fetch(API_BASE, {
+      signal: controller ? controller.signal : undefined,
+      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    })
+      .then(function(res) { if (timerId) clearTimeout(timerId); if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+      .then(function(json) {
+        const data = { stars: json.stargazers_count, forks: json.forks_count, updated: formatDate(json.pushed_at || json.updated_at) };
+        setCached(data);
+        updateDOM(data);
+      })
+      .catch(function() { /* graceful degradation */ });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var cached = getCached();
+    if (cached) updateDOM(cached);
+    fetchFreshData();
+  });
+})();
+</script>
+
+</body>
+</html>

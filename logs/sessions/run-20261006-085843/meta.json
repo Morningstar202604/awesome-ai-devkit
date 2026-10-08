@@ -1,0 +1,9 @@
+{
+  "session_id": "run-20261006-085843",
+  "task": "example-feature",
+  "scaffold": "scaffold.yaml",
+  "provider": "claude",
+  "started_at": "2026-10-06T08:58:43.992196+00:00",
+  "steps_total": 0,
+  "steps_completed": 0
+}

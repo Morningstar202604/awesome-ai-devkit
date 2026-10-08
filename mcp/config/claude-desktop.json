@@ -1,0 +1,96 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/mnt/data/catpaw/home/workspace/坏境"
+      ],
+      "env": {},
+      "metadata": {
+        "description": "Access and modify files in the workspace",
+        "capabilities": ["read_file", "write_file", "list_directory", "search_files"]
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "metadata": {
+        "description": "Interact with GitHub repositories, issues, and PRs",
+        "capabilities": ["create_issue", "create_pr", "list_prs", "merge_pr", "add_comment"]
+      }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
+      ],
+      "env": {},
+      "metadata": {
+        "description": "Query and modify PostgreSQL database",
+        "capabilities": ["query", "insert", "update", "delete", "list_tables"]
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "metadata": {
+        "description": "Search the web using Brave Search API",
+        "capabilities": ["web_search", "local_search", "news_search"]
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "env": {},
+      "metadata": {
+        "description": "Automate browser interactions for testing and scraping",
+        "capabilities": ["navigate", "click", "screenshot", "extract_text"]
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-slack"
+      ],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"
+      },
+      "metadata": {
+        "description": "Send messages and interact with Slack",
+        "capabilities": ["send_message", "list_channels", "upload_file"]
+      }
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
+      "env": {},
+      "metadata": {
+        "description": "Perform git operations",
+        "capabilities": ["git_status", "git_diff", "git_commit", "git_log"]
+      }
+    }
+  }
+}

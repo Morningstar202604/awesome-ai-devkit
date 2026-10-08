@@ -1,0 +1,91 @@
+# ──────────────────────────────────────────────────────────────────
+# 示例: 用户认证功能脚手架 v2.0
+#
+# 复制此文件到项目根目录 scaffold.yaml 即可启动。
+# 这是一个真实可用的完整示例。
+# ──────────────────────────────────────────────────────────────────
+
+version: "2.0"
+
+task:
+  name: "user-auth-system"
+  description: "完整的用户注册/登录/JWT/密码重置系统"
+  type: feature
+
+memory:
+  - context/project.yaml
+  - context/architecture.md
+  - db/migrations/
+  - git log --oneline -20
+
+steps:
+  # ── 串行前置 ────────────────────────────────────────────
+  - goal: "需求分析与验收标准"
+    description: "定义用户故事、验收标准 (Gherkin)、数据模型概览"
+    skills: [project-management, collaboration]
+    outputs:
+      - docs/auth-requirements.md:
+          contains: [验收标准, Given, When, Then]
+
+  - goal: "架构决策 + 数据库 Schema + 迁移"
+    description: "JWT 策略、密码加密方案、migration 文件（含回滚）"
+    skills: [database-design, api-design, backend-architecture]
+    outputs:
+      - context/architecture.md:
+          append: true
+          contains: [ADR]
+      - db/migrations/<version>_create_users.up.sql:
+          contains: [CREATE TABLE users, password_hash]
+      - db/migrations/<version>_create_users.down.sql:
+          contains: [DROP TABLE users]
+
+  # ── 并行实现 ────────────────────────────────────────────
+  - goal: "认证 API 后端实现"
+    parallel: true
+    description: "注册/登录/Token 刷新/密码重置 + 单元测试"
+    skills: [api-design, auth-implementation, auth-advanced]
+    outputs:
+      - src/api/auth.py:
+          contains: [APIRouter, register, login, verify_token]
+      - src/core/security.py:
+          contains: [hash_password, verify_password, create_access_token]
+      - tests/api/test_auth.py:
+          contains: [test_register_success, test_login_success, test_login_wrong_password, test_token_verify]
+    quality_gate: "认证单元测试全部通过"
+
+  - goal: "登录/注册前端页面"
+    parallel: true
+    skills: [design-system, state-management, forms]
+    outputs:
+      - frontend/app/auth/login/page.tsx:
+          contains: [LoginForm, handleSubmit]
+      - frontend/app/auth/register/page.tsx:
+          contains: [RegisterForm, handleSubmit]
+      - frontend/lib/api/auth.ts:
+          contains: [login, register]
+    quality_gate: "前端 build 无 error，表单验证覆盖空值/格式/密码强度"
+
+  # ── 串行后置 ────────────────────────────────────────────
+  - goal: "集成测试 + E2E 核心流"
+    description: "注册→登录→Token→访问受保护资源→注销 + 过期 Token 拒绝"
+    skills: [test-strategy, testing-advanced]
+    outputs:
+      - tests/integration/test_auth_flow.py:
+          contains: [test_register_login_logout, test_expired_token_rejected]
+    quality_gate: "E2E 核心流全部通过"
+
+  - goal: "安全自审"
+    description: "对照 OWASP Top 10：密码策略、Token 安全、速率限制、参数化 SQL"
+    skills: [security, auth-advanced, rate-limiting]
+    quality_gate: "无 OWASP 高危项；密码 bcrypt/argon2；Token 有过期；登录限流"
+
+  - goal: "CI/CD + 发布"
+    skills: [cicd-pipeline, deployment]
+    quality_gate: "CI 包含 lint + test + typecheck；CHANGELOG 已更新；回滚方案已记录"
+
+post_task:
+  quality_gates:
+    - "全量测试通过: pytest tests/ -x"
+    - "安全自审通过: 无硬编码密钥 / SQL 注入 / 权限绕过"
+    - "Migration 可逆: down 文件存在且被验证"
+    - "ADR 已更新"

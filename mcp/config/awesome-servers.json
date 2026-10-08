@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json.schemastore.org/mcp-server-config.json",
+  "_meta": {
+    "name": "Awesome AI DevKit — MCP 服务器推荐配置",
+    "description": "按场景整理的 MCP 服务器列表，supported by major AI coding tools",
+    "last_updated": "2026-10-06",
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "id": "filesystem",
+      "category": "core",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${workspaceFolder}"],
+      "description": "本地文件系统读写",
+      "enabled_by_default": true
+    },
+    {
+      "id": "git",
+      "category": "core",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git", "--repo", "${workspaceFolder}"],
+      "description": "Git 操作（diff, log, blame）",
+      "enabled_by_default": true
+    },
+    {
+      "id": "github",
+      "category": "core",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub Issues / PR / CI 状态",
+      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}" },
+      "enabled_by_default": true
+    },
+    {
+      "id": "postgres",
+      "category": "database",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "${DATABASE_URL}"],
+      "description": "PostgreSQL 查询与 Schema 浏览",
+      "enabled_by_default": true
+    },
+    {
+      "id": "mysql",
+      "category": "database",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-mysql"],
+      "description": "MySQL 查询与 Schema 浏览",
+      "env": { "MYSQL_URL": "${MYSQL_URL}" },
+      "enabled_by_default": false
+    },
+    {
+      "id": "redis",
+      "category": "database",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-redis"],
+      "description": "Redis KV 操作与发布订阅",
+      "env": { "REDIS_URL": "${REDIS_URL}" },
+      "enabled_by_default": false
+    },
+    {
+      "id": "mongodb",
+      "category": "database",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-mongodb"],
+      "description": "MongoDB 查询与聚合",
+      "env": { "MONGODB_URI": "${MONGODB_URI}" },
+      "enabled_by_default": false
+    },
+    {
+      "id": "brave-search",
+      "category": "search",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "description": "通用网页搜索",
+      "env": { "BRAVE_API_KEY": "${BRAVE_API_KEY}" },
+      "enabled_by_default": true
+    },
+    {
+      "id": "playwright",
+      "category": "browser",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-playwright", "--headless"],
+      "description": "无头浏览器自动化（E2E 测试、截图）",
+      "enabled_by_default": true
+    },
+    {
+      "id": "docker",
+      "category": "devops",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-docker"],
+      "description": "Docker 容器与镜像管理",
+      "enabled_by_default": false
+    },
+    {
+      "id": "slack",
+      "category": "communication",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "description": "Slack 消息与频道操作",
+      "env": { "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}" },
+      "enabled_by_default": false
+    },
+    {
+      "id": "google-drive",
+      "category": "storage",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-drive"],
+      "description": "Google Drive 文件读写",
+      "env": { "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}" },
+      "enabled_by_default": false
+    }
+  ]
+}

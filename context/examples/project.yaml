@@ -1,0 +1,28 @@
+project:
+  name: "example-project"
+  stack:
+    frontend: "Next.js 15 + React 19 + Tailwind"
+    backend: "FastAPI"
+    database: "PostgreSQL + Redis + Qdrant"
+  conventions:
+    commit_style: "angular"
+    api_style: "rest"
+    test_threshold: 0.8
+    line_length: 99
+
+  decisions:
+    - id: "ADR-001"
+      title: "选择 LangGraph 而非自研编排"
+      date: "2026-10-05"
+      status: "accepted"
+      context: "需要多步推理、状态管理、人工干预能力"
+      decision: "使用 LangGraph 作为 Agent 编排引擎"
+      consequences:
+        - 减少自研成本
+        - 社区生态丰富
+        - 需接受 LangChain 抽象层
+
+  shared_variables:
+    api_base_url: "http://localhost:8000"
+    api_version: "v1"
+    db_schema_version: "2.3"

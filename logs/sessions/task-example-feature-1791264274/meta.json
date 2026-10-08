@@ -1,0 +1,9 @@
+{
+  "task": "example-feature",
+  "scaffold": "scaffold.yaml",
+  "session_id": "task-example-feature-1791264274",
+  "started_at": "2026-10-06T05:24:34Z",
+  "protocol_version": "2.0",
+  "started_by": "unknown",
+  "git_branch": "main"
+}

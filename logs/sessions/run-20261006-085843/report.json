@@ -1,0 +1,51 @@
+{
+  "session_id": "run-20261006-085843",
+  "success": true,
+  "completed_at": "2026-10-06T08:58:44.077616+00:00",
+  "steps_total": 6,
+  "steps_completed": 6,
+  "steps": [
+    {
+      "step_id": "step-01",
+      "goal": "需求分析与验收标准",
+      "success": true,
+      "attempts": 0,
+      "error_output": ""
+    },
+    {
+      "step_id": "step-02",
+      "goal": "技术方案设计",
+      "success": true,
+      "attempts": 0,
+      "error_output": ""
+    },
+    {
+      "step_id": "step-03",
+      "goal": "后端实现",
+      "success": true,
+      "attempts": 0,
+      "error_output": ""
+    },
+    {
+      "step_id": "step-04",
+      "goal": "前端实现",
+      "success": true,
+      "attempts": 0,
+      "error_output": ""
+    },
+    {
+      "step_id": "step-05",
+      "goal": "集成测试",
+      "success": true,
+      "attempts": 0,
+      "error_output": ""
+    },
+    {
+      "step_id": "step-06",
+      "goal": "代码自审 + 发布",
+      "success": true,
+      "attempts": 0,
+      "error_output": ""
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# ============================================================
+# Hooks 系统配置
+# ============================================================
+# 仅列出实际可用的钩子脚本，按需启用
+
+hooks:
+  # ── Scaffold 生命周期 ──
+  scaffold_lifecycle:
+    enabled: true
+    pre_task:
+      - script: "hooks/scripts/pre-task.sh"
+        description: "开工：检查 scaffold.yaml 合法性 + skill 存在性"
+        timeout: 30
+        required: true
+    post_task:
+      - script: "hooks/scripts/post-task.sh"
+        description: "完工：运行 post_task validations"
+        timeout: 60
+        required: false
+
+  # ── Agent 启动/结束 ──
+  agent_lifecycle:
+    enabled: true
+    on_agent_start:
+      - script: "scenarios/programming/fullstack/hooks/scripts/load-project-context.sh"
+        timeout: 5
+    on_agent_end:
+      - script: "scenarios/programming/fullstack/hooks/scripts/save-session-log.sh"
+        timeout: 10

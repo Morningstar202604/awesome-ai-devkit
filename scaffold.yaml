@@ -1,0 +1,64 @@
+# ──────────────────────────────────────────────────────────────────
+# Awesome AI DevKit — 示例 Scaffold v2.0
+#
+# 这是一个最简可用示例。复制并修改即可启动真实任务。
+# ──────────────────────────────────────────────────────────────────
+
+version: "2.0"
+
+task:
+  name: "example-feature"
+  description: "示例脚手架 — 覆盖核心字段的最小可用配置"
+  type: feature
+
+memory:
+  - context/project.yaml
+  - context/architecture.md
+  - git log --oneline -20
+
+steps:
+
+  # ── 阶段 1: 串行前置 ────────────────────────────────────
+  - goal: "需求分析与验收标准"
+    description: "将模糊需求转化为可测试的验收标准"
+    skills: [project-management]
+    outputs:
+      - docs/requirements/<feature>.md:
+          contains: [验收标准]
+
+  - goal: "技术方案设计"
+    description: "API / 数据模型 / 变更范围"
+    skills: [backend-architecture, api-design]
+    outputs:
+      - docs/design/<feature>.md
+
+  # ── 阶段 2: 并行实现 ────────────────────────────────────
+  - goal: "后端实现"
+    parallel: true
+    skills: [api-design, auth-implementation]
+    outputs:
+      - src/api/<feature>/<controller>.py:
+          contains: [router, service]
+    quality_gate: "后端单元测试全部通过"
+
+  - goal: "前端实现"
+    parallel: true
+    skills: [design-system, state-management]
+    outputs:
+      - frontend/app/<feature>/page.tsx
+    quality_gate: "前端 build 无 error"
+
+  # ── 阶段 3: 串行后置 ────────────────────────────────────
+  - goal: "集成测试"
+    skills: [test-strategy]
+    quality_gate: "集成测试全部通过，核心 E2E 通过"
+
+  - goal: "代码自审 + 发布"
+    skills: [security]
+    quality_gate: "无安全高危漏洞；CHANGELOG 已更新"
+
+post_task:
+  quality_gates:
+    - "全量测试通过"
+    - "覆盖率 ≥ 60%（核心业务模块）"
+    - "无安全硬编码泄露"

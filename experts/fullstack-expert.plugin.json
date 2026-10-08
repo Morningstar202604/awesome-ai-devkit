@@ -1,0 +1,121 @@
+{
+  "name": "fullstack-expert",
+  "version": "1.0.0",
+  "description": "Awesome AI DevKit 全栈开发终极专家——整合框架全部 11 层能力，跨角色/技能/工具统一编排，输出从需求到上线的完整交付物",
+  "author": "Awesome AI DevKit Team",
+  "license": "MIT",
+  "platforms": ["catpaw", "cursor", "cline", "github-copilot"],
+
+  "interface": {
+    "displayName": {
+      "zh-CN": "全栈开发专家",
+      "en": "Fullstack Expert"
+    },
+    "shortDescription": {
+      "zh-CN": "11 层全栈开发框架：19 技能 × 19 工具 × 11 MCP × 完整工作流",
+      "en": "11-layer fullstack framework: 19 skills × 19 tools × 11 MCP × complete workflows"
+    },
+    "tags": ["fullstack", "ai-devkit", "multi-agent", "saas", "coding"]
+  },
+
+  "layers": {
+    "rules": {
+      "path": "../../rules/",
+      "files": [
+        "rules/coding-standards.md",
+        "rules/security-checklist.md",
+        "rules/collaboration-rules.md"
+      ]
+    },
+    "prompts": {
+      "path": "../../roles/expanded/",
+      "roles": [
+        "product-manager", "security-engineer", "ai-engineer",
+        "database-architect", "ui-designer", "sre-engineer",
+        "technical-writer", "scrum-master", "data-engineer",
+        "ml-engineer", "mobile-developer"
+      ]
+    },
+    "tools": {
+      "categories": {
+        "web": ["html_to_markdown", "json_validator", "openapi_parser"],
+        "ai": ["llm_client", "embedding_client", "prompt_builder"],
+        "db": ["postgres_client", "qdrant_client", "redis_client"],
+        "cli": ["dev_server", "test_runner", "project_scaffolder"],
+        "implementations": ["api_client", "database_query", "file_operations", "git_operations", "shell_executor", "code_execution", "web_search"]
+      }
+    },
+    "mcp": {
+      "path": "../../scenarios/programming/fullstack/mcp/",
+      "config": "mcp-config.yaml",
+      "servers": [
+        "filesystem", "git", "github", "postgres",
+        "redis", "qdrant", "memory", "browser",
+        "puppeteer", "sequential-thinking", "fetch"
+      ]
+    },
+    "skills": {
+      "path": "../../scenarios/programming/fullstack/skills/",
+      "count": 19,
+      "categories": {
+        "design": ["design-system", "ux-research", "accessibility"],
+        "frontend": ["frontend-architecture", "component-patterns", "data-fetching", "performance-ux", "state-management", "forms", "testing-components"],
+        "backend": ["backend-architecture", "api-design", "api-client", "api-versioning", "database-design", "data-modeling", "migrations", "graphql", "microservices", "webhooks"],
+        "auth-security": ["auth-implementation", "auth-advanced", "security", "rate-limiting", "soft-delete"],
+        "devops": ["cicd-pipeline", "containers", "deployment", "monitoring", "logging-observability"],
+        "data-ai": ["ai-integration", "search", "analytics", "background-jobs", "queues", "caching"],
+        "qa": ["testing", "test-strategy", "testing-advanced", "testing-components", "debugging", "production-hardening"],
+        "product": ["collaboration", "project-management", "tech-writing", "i18n", "email", "storage", "payments", "notifications", "seo", "onboarding"]
+      }
+    },
+    "agents": {
+      "orchestration": "supervisor",
+      "routing": "intent-based"
+    },
+    "workflows": {
+      "path": "../../scenarios/programming/fullstack/workflows/",
+      "definitions": ["feature-development", "bug-fix", "refactoring", "release-checklist", "incident-response", "new-developer"]
+    },
+    "hooks": {
+      "path": "../../hooks/",
+      "middleware": ["rate_limiter", "auth_check", "sql_guard", "cache"]
+    },
+    "context": {
+      "path": "../../scenarios/programming/fullstack/context/",
+      "templates": ["project.template.yaml", "session.template.json", "architecture.md"]
+    },
+    "validation": {
+      "entry": "checks.py",
+      "schemas": ["skill.schema.json", "agent.schema.json", "workflow.schema.json"]
+    }
+  },
+
+  "activation": {
+    "triggers": [
+      "帮我搭建一个全栈项目",
+      "从 0 到 1 做 SaaS",
+      "fullstack development",
+      "需要前后端都做的功能"
+    ]
+  },
+
+  "outputs": [
+    "可运行代码仓库",
+    "数据库 migration 文件",
+    "API 文档 (OpenAPI/Swagger)",
+    "测试报告 (覆盖率 + E2E)",
+    "部署配置 (docker-compose / CI)",
+    "ADR 文档 (架构决策记录)",
+    "CHANGELOG + Release Notes"
+  ],
+
+  "metadata": {
+    "tech_stack": {
+      "frontend": ["Next.js 15", "React 19", "Tailwind v4", "TanStack Query"],
+      "backend": ["FastAPI", "Pydantic", "SQLAlchemy async", "Alembic"],
+      "database": ["PostgreSQL 16", "Redis 7", "Qdrant"],
+      "devops": ["Docker", "GitHub Actions", "Railway", "Vercel"]
+    },
+    "methodology": ["Scrum+ShapeUp", "RICE", "TDD", "WCAG AA", "OWASP Top 10"]
+  }
+}
